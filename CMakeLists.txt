@@ -47,7 +47,7 @@ include_directories(
 
 ## Declare a C++ library
 set(LIB_SRC_LIST src/MarkoCamera.cpp src/ImageRectify.cpp)
-set(Target_LIB_LIST libImagelib.a libPvAPI.so ${OpenCV_LIBS} ${catkin_LIBRARIES})
+set(Target_LIB_LIST lib/avt_sdk_lib/libImagelib.a lib/avt_sdk_lib/libPvAPI.so ${OpenCV_LIBS} ${catkin_LIBRARIES})
 add_library(CameraFuncs ${LIB_SRC_LIST})
 target_link_libraries(CameraFuncs ${Target_LIB_LIST})
 
