@@ -18,6 +18,9 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "get_camera_image"); //node name
   ros::NodeHandle nh;
+  ros::Publisher pubLeftCameraImg; //发布左相机图像
+  pubLeftCameraImg = nh.advertise<sensor_msgs::Image>("left_camera_image",1);
+  ros::Rate rate(10); //发布频率
 
   //set camera parameters and start retriving camera image
   MakoCamera Camera;
@@ -32,6 +35,7 @@ int main(int argc, char** argv)
 
   if(Camera.isStart)
   {
+    printf("[INFO] Camera connected!\n");
     Camera.initParm();
   }
   while(ros::ok())
@@ -50,10 +54,15 @@ int main(int argc, char** argv)
       cv::resize(Camera.imRightR,Camera.rightim_resize,cv::Size(Camera.leftim_resize.cols,Camera.rightim_resize.rows));
     }
 
+    //publish image to ROS node
+    sensor_msgs::ImagePtr left_image_msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", Camera.leftim_resize).toImageMsg();
+    pubLeftCameraImg.publish(left_image_msg);
     if(Camera.isShow)
     {
       Camera.showImage();
     }
+
+    rate.sleep();
   }
 }
 
