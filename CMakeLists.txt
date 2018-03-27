@@ -52,6 +52,10 @@ add_library(CameraFuncs ${LIB_SRC_LIST})
 target_link_libraries(CameraFuncs ${Target_LIB_LIST})
 
 ## Declare a C++ executable
+add_executable(get_camera_image src/get_camera_image.cpp)
+target_link_libraries(get_camera_image CameraFuncs ${catkin_LIBRARIES} ${OpenCV_LIBS})
+
+## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/camera_driver_node.cpp)

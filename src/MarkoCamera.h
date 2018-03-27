@@ -5,7 +5,6 @@
 //////////////////////////////////////////////////
 #include <iostream>
 #include <math.h>
-#include "rcs.hh"
 using namespace std;
 
 #ifdef _WINDOWS
@@ -156,9 +155,4 @@ public:
 	double time_dp;
 private:
 	double time_left_recv,time_right_recv;
-
-
-
-protected:
-private:
 };
