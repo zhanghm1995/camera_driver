@@ -1,9 +1,11 @@
-/*
- * get_camera_image.cpp
- *
- *  Created on: 2018年3月27日
- *      Author: zhanghm
- */
+//======================================================================
+// Author   : Haiming Zhang
+// Email    : zhanghm_1995@qq.com
+// Version  :
+// Copyright    :
+// Descriptoin  : 获取Moko相机图像，并用ROS发布图像消息
+// References   :
+//======================================================================
 
 #include <time.h>
 //ROS
