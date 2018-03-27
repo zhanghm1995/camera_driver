@@ -25,8 +25,8 @@ int main(int argc, char** argv)
   Camera.CameraNum = 1;
   Camera.isHardTrigger = 0;
   Camera.isAuto = 1;
-  Camera.ScaleFactor = 0.5;
-  Camera.SettingPath = "/home/xule/ORB_SLAM2_multilayer/Examples/Stereo/offline_0.5.yaml";
+  Camera.ScaleFactor = 0.5; //相机原始像素为1280x960，缩放因子为0.5
+  //Camera.SettingPath = "/home/xule/ORB_SLAM2_multilayer/Examples/Stereo/offline_0.5.yaml";//双目标定参数
   Camera.isStart = Camera.StartCamera();
 
 
@@ -40,7 +40,7 @@ int main(int argc, char** argv)
     {
       sleep(0.1);
     }
-    Camera.RectifyImage();
+    Camera.RectifyImage();//校正相机图像，校正后图片为imLeftR
     if(Camera.CameraNum==1)
     {
       cv::resize(Camera.imLeftR,Camera.leftim_resize,cv::Size(Camera.leftim_resize.cols,Camera.leftim_resize.rows));

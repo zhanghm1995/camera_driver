@@ -800,11 +800,10 @@ void MakoCamera::ConvertRawY8RGGB_right(UINT32 XSize,UINT32 YSize,UINT8 *pBuf,UI
 
 bool MakoCamera::GetImage(void/*tPvHandle *Handle,tPvFrame *pFrame,IplImage *img*/)
 {
-  //WaitForSingleObject(hMutex_left,INFINITE);
-  //WaitForSingleObject(hMutex_right,INFINITE);
+
   if(CameraNum==1)
   {
-    printf("into GetImage/n");
+    printf("into GetImage\n");
     temp_frame_left = globle_frame_left.globle_frame;
     time_left_recv = globle_frame_left.data_recv_time;
     time_dp = time_left_recv;
@@ -833,10 +832,6 @@ bool MakoCamera::GetImage(void/*tPvHandle *Handle,tPvFrame *pFrame,IplImage *img
   {
     return false;
   }
-
-  //ReleaseMutex(hMutex_right);
-  //ReleaseMutex(hMutex_left);
-
 
 }
 bool MakoCamera::StartCamera()
@@ -990,7 +985,7 @@ void MakoCamera::initParm()
     ImageHeight = globle_frame_left.globle_frame.Height;
 
     printf("befor rectify/n");
-    if (!rectifyLeft.Init(SettingPath, "LEFT") )
+    if (!rectifyLeft.Init(SettingPath, "LEFT"))
     {
       printf("befor return/n");
       return;
