@@ -4,9 +4,9 @@ project(camera_driver)
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
+##############################
+###### find packages #########
+##############################
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_transport
@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+find_package(OpenCV REQUIRED)
 
 
 
@@ -43,11 +44,13 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 set(LIB_SRC_LIST src/MarkoCamera.cpp src/ImageRectify.cpp)
-set(Target_LIB_LIST lib/avt_sdk_lib/libImagelib.a lib/avt_sdk_lib/libPvAPI.so ${OpenCV_LIBS} ${catkin_LIBRARIES})
+set(Target_LIB_LIST /home/zhanghm/catkin_ws_IVRC/src/camera_driver/lib/avt_sdk_lib/libImagelib.a 
+/home/zhanghm/catkin_ws_IVRC/src/camera_driver/lib/avt_sdk_lib/libPvAPI.so ${OpenCV_LIBS} ${catkin_LIBRARIES})
 add_library(CameraFuncs ${LIB_SRC_LIST})
 target_link_libraries(CameraFuncs ${Target_LIB_LIST})
 

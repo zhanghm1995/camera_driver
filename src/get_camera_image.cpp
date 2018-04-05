@@ -58,6 +58,7 @@ int main(int argc, char** argv)
 
     //publish image to ROS node
     sensor_msgs::ImagePtr left_image_msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", Camera.leftim_resize).toImageMsg();
+    left_image_msg.header.stamp = ros::Time::now();
     pubLeftCameraImg.publish(left_image_msg);
     if(Camera.isShow)
     {
