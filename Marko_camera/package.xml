@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>camera_driver</name>
+  <name>Marko_camera</name>
   <version>0.0.0</version>
   <description>The camera_driver package</description>
 

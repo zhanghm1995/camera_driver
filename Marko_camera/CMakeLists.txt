@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(camera_driver)
+project(Marko_camera)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -49,8 +49,8 @@ include_directories(
 
 ## Declare a C++ library
 set(LIB_SRC_LIST src/MarkoCamera.cpp src/ImageRectify.cpp)
-set(Target_LIB_LIST /home/zhanghm/catkin_ws_IVRC/src/camera_driver/lib/avt_sdk_lib/libImagelib.a 
-/home/zhanghm/catkin_ws_IVRC/src/camera_driver/lib/avt_sdk_lib/libPvAPI.so ${OpenCV_LIBS} ${catkin_LIBRARIES})
+set(Target_LIB_LIST /home/zhanghm/catkin_ws_IVRC/src/camera_driver/Marko_camera/lib/avt_sdk_lib/libImagelib.a 
+/home/zhanghm/catkin_ws_IVRC/src/camera_driver/Marko_camera/lib/avt_sdk_lib/libPvAPI.so ${OpenCV_LIBS} ${catkin_LIBRARIES})
 add_library(CameraFuncs ${LIB_SRC_LIST})
 target_link_libraries(CameraFuncs ${Target_LIB_LIST})
 
