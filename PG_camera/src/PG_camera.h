@@ -26,6 +26,7 @@ public:
     bool StartCamera();
     void CloseCamera();
     IplImage* CaptureImage();
+    IplImage* CaptureColorImage();
     void PrintError( Error error );
 
 

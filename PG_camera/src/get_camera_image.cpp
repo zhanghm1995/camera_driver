@@ -36,7 +36,8 @@ int main(int argc, char** argv)
   }
   while(ros::ok())
   {
-    IplImage* image_src = Camera.CaptureImage();//获取图片,image_src指针指向图像内存区域，需要负责释放
+//    IplImage* image_src = Camera.CaptureImage();//获取图片,image_src指针指向图像内存区域，需要负责释放
+    IplImage* image_src = Camera.CaptureColorImage();//获取图片,image_src指针指向图像内存区域，需要负责释放
     cv::Mat mat_img = cv::cvarrToMat(image_src,false);//不复制图像转换为Mat类型图片
 //    cv::cvtColor(mat_img,mat_img,CV_GRAY2BGR);
 

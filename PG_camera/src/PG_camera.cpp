@@ -108,6 +108,69 @@ return frame1;
 
 }
 
+IplImage* PGcamera::CaptureColorImage(){
+    Error error;
+    Image rawImage;
+    // Retrieve an image
+    error = camera.RetrieveBuffer( &rawImage );
+    if (error != PGRERROR_OK)
+    {
+        PrintError( error );
+
+    }
+
+ //   cout << "Grabbed image " << endl;
+    // Create a converted image
+
+
+    Image convertedImage;
+
+    // Convert the raw image
+    error = rawImage.Convert( PIXEL_FORMAT_RGB8, &convertedImage );
+    if (error != PGRERROR_OK)
+    {
+        PrintError( error );
+        //return ;
+    }
+
+    //Image convertedImage;
+    //convertedImage.DeepCopy(&rawImage);
+
+    //convert to opencv image
+    int width = convertedImage.GetCols();
+    int height = convertedImage.GetRows();
+    //printf("width is ================= %d\n",width);
+    //printf("height is ================= %d\n",height);
+
+    IplImage * frame;
+    frame = cvCreateImage(cvSize(width,height),8,3);
+    const unsigned char* pImageBuffer = convertedImage.GetData();
+    //printf("frame->widthStep is ================= %d\n",frame->widthStep);
+    for (int i = 0;i < height;i++)
+    {
+      unsigned char* ptr = (unsigned char*)(frame->imageData + frame->widthStep*i);
+      unsigned char* ptr_raw = (unsigned char*)(pImageBuffer+i*width*3);
+      for (int j = 0;j < width;j++)
+      {
+        ptr[3*j] = ptr_raw[3*j];
+        ptr[3*j+1] = ptr_raw[3*j+1];
+        ptr[3*j+2] = ptr_raw[3*j+2];
+      }
+    }
+    IplImage * frame1 = cvCreateImage(cvSize(width,height),8,3);
+    cvCopy(frame,frame1);
+    //cvCvtColor(frame,frame1,CV_BGR2GRAY);
+
+return frame1;
+ //   cvShowImage("111",frame1);
+  //  cvWaitKey(0);
+
+   /* cv::Mat fra = cv::Mat(width,height,CV_8UC3,convertedImage);
+    *frame1 = IplImage(fra);*/
+
+}
+
+
 void PGcamera::CloseCamera(){
     Error error;
 
