@@ -14,7 +14,7 @@
 #include <cv_bridge/cv_bridge.h>
 
 //project headers
-#include "PGcamera.h"
+#include "PG_camera.h"
 
 int main(int argc, char** argv)
 {
@@ -38,11 +38,14 @@ int main(int argc, char** argv)
   {
     IplImage* image_src = Camera.CaptureImage();//获取图片,image_src指针指向图像内存区域，需要负责释放
     cv::Mat mat_img = cv::cvarrToMat(image_src,false);//不复制图像转换为Mat类型图片
+//    cv::cvtColor(mat_img,mat_img,CV_GRAY2BGR);
 
     //publish image to ROS node
     sensor_msgs::ImagePtr left_image_msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", mat_img).toImageMsg();
     left_image_msg->header.stamp = ros::Time::now();
     pubLeftCameraImg.publish(left_image_msg);
+    cv::imshow("PG camera",mat_img);
+    cv::waitKey(30);
     cvReleaseImage(&image_src);
     rate.sleep();
   }

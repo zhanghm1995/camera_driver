@@ -1,4 +1,4 @@
-#include "PGcamera.h"
+#include "PG_camera.h"
 
 bool PGcamera::StartCamera(){
     BusManager busMgr;

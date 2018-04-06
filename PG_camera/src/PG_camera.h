@@ -14,7 +14,7 @@
 #include <iomanip>
 //OpenCV
 #include <opencv2/opencv.hpp>
-#include "FlyCapture2.h"
+#include "flycapture/FlyCapture2.h"
 using namespace FlyCapture2;
 using namespace std;
 
@@ -34,4 +34,5 @@ public:
 
 private:
     PGRGuid guid;
-};/*SRC_CAMERA_DRIVER_SRC_PG_CAMERA_H_*/
+};
+#endif/*SRC_CAMERA_DRIVER_SRC_PG_CAMERA_H_*/
