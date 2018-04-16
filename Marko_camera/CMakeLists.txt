@@ -51,32 +51,31 @@ include_directories(
 set(LIB_SRC_LIST src/MarkoCamera.cpp src/ImageRectify.cpp)
 set(Target_LIB_LIST /home/zhanghm/catkin_ws_IVRC/src/camera_driver/Marko_camera/lib/avt_sdk_lib/libImagelib.a 
 /home/zhanghm/catkin_ws_IVRC/src/camera_driver/Marko_camera/lib/avt_sdk_lib/libPvAPI.so ${OpenCV_LIBS} ${catkin_LIBRARIES})
-add_library(CameraFuncs ${LIB_SRC_LIST})
+add_library(CameraFuncs STATIC ${LIB_SRC_LIST})
 target_link_libraries(CameraFuncs ${Target_LIB_LIST})
 
 ## Declare a C++ executable
 add_executable(get_camera_image src/get_camera_image.cpp)
 target_link_libraries(get_camera_image CameraFuncs ${catkin_LIBRARIES} ${OpenCV_LIBS})
 
-## Declare a C++ executable
-## With catkin_make all packages are built within a single CMake context
-## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/camera_driver_node.cpp)
+##############################
+###### install packages #########
+##############################
 
-## Rename C++ executable without prefix
-## The above recommended prefix causes long target names, the following renames the
-## target back to the shorter version for ease of user use
-## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
-# set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
 
-## Add cmake target dependencies of the executable
-## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+install(TARGETS get_camera_image CameraFuncs
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
-## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+install(
+  TARGETS get_camera_image CameraFuncs
+  EXPORT Marko_cameraExport
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
 
 #############
 ## Install ##

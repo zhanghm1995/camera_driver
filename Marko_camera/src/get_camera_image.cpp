@@ -22,7 +22,7 @@ int main(int argc, char** argv)
   ros::NodeHandle nh;
   ros::Publisher pubLeftCameraImg; //发布左相机图像
   pubLeftCameraImg = nh.advertise<sensor_msgs::Image>("left_camera_image",1);
-  ros::Rate rate(10); //发布频率
+  ros::Rate rate(30); //发布频率
 
   //set camera parameters and start retriving camera image
   MakoCamera Camera;
