@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>my_image_transport</name>
+  <name>marko_camera</name>
   <version>0.0.0</version>
-  <description>The my_image_transport package</description>
+  <description>The marko_camera API package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(my_image_transport)
+project(marko_camera)
 
 #cjs180314增加对于Marko相机源文件的索引
 set(SRC_LIST ${SRC_LIST} src/Source/ApiController.cpp)

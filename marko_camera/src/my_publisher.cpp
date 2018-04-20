@@ -36,13 +36,14 @@ int main(int argc, char** argv)
   Markocamera m_camera;
   m_camera.Opencamera();
   usleep(1000000);
-  ros::Rate loop_rate(5);
+  ros::Rate loop_rate(30);
   IplImage img_temp;
-  while (nh.ok()) {
+  while (ros::ok()) {
     cv::Mat image_source = image_get(m_camera,img_temp);
     sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image_source).toImageMsg();
+    msg->header.stamp = ros::Time::now();
     pub.publish(msg);
-    ros::spinOnce();
+    //ros::spinOnce();
     loop_rate.sleep();
   }
 }
