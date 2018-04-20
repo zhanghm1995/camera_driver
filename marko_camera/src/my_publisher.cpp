@@ -41,7 +41,7 @@ int main(int argc, char** argv)
   while (ros::ok()) {
     cv::Mat image_source = image_get(m_camera,img_temp);
     sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image_source).toImageMsg();
-    msg->header.stamp = ros::Time::now();
+    msg->header.stamp = ros::Time::now();//Important! need add this line for message_filters to sync messages
     pub.publish(msg);
     //ros::spinOnce();
     loop_rate.sleep();
